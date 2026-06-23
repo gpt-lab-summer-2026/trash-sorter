@@ -1,0 +1,1 @@
+# handle the physical sorting of the trash; motors and signals to them etc whatever is needed
