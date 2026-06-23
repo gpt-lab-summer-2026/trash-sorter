@@ -9,7 +9,6 @@ trash-venv/
 
 # YOLO model weights
 *.pt
-*.onnx
 
 # Training outputs
 runs/
@@ -18,9 +17,9 @@ runs/
 .DS_Store
 
 # Data / images (large files)
-data/dataset-resized/
-
+dataset-resized
 data
 
 yolov8n.pt
 output.mp4
+

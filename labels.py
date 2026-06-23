@@ -1,24 +1,28 @@
 # class list
 # remove some classes, maybe 3-4 would be good amount 
 CLASSES = [
-    "bottle",
-    "cup",
-    "banana",
-    "apple",
-    "hot dog",
-    "potted plant",
-    "cell phone",
-    "tootbrush"    
+    "battery",
+    "cans",
+    "cardboard",
+    "glass",
+    "metal",
+    "organic_waste",
+    "paper",
+    "plastic",
+    "plastic_bottles",
+    "trash"
 ]
 # test version, update to correct when getting correct model for this one
 BIN_MAPPING = {
-    "bottle" : "Bottles and cans",
-    "cup" : "General",
-    "banana" : "Bio",
-    "apple" : "Bio",
-    "hot dog" : "Bio",
-    "potted plant" : "Bio",
-    "cell phone" : "Electronics",
-    "toothbrush" : "Plastic",
+    "battery" : "Battery bin",
+    "cans" : "Cans and bottles",
+    "cardboard" : "Cardboard bin",
+    "glass" : "Glass bin",
+    "metal" : "Metal bin",
+    "organic_waste" : "Bio bin",
+    "paper" : "Paper bin",
+    "plastic" : "Plastic bin",
+    "plastic_bottles" : "Cans and bottles",
+    "trash": "General"
 }
 DEFAULT_BIN = "General"
