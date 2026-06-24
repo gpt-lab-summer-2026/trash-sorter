@@ -1,6 +1,6 @@
 
 # settings etc all configs lol, in one place -> easy to change
-MODEL_PATH = "best.onnx"  # Nano version
+MODEL_PATH = "finetuned3.onnx"  # Nano version
 
 CONFIDENCE_THRESHOLD = 0.65
 CAMERA_INDEX = 1  # 0 = iPhone (Continuity Camera), 1 = built-in FaceTime
