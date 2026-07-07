@@ -12,7 +12,9 @@ def calibrate(cam):
     ref = np.mean(frames, axis=0).astype(np.uint8)
     return ref
 
-def detect_motion(current_frame, reference_frame):
+def detect_motion(current_frame, reference_frame, threshold=None):
+    if threshold is None:
+        threshold = MOTION_THRESHOLD
     #cv2.waitKey(500)  # wait 500ms for item to settle
     movement = False
     # convert frames to grayscale
@@ -24,7 +26,7 @@ def detect_motion(current_frame, reference_frame):
     count = cv2.countNonZero(thresh)
     print(f"Changed pixels: {count}")   
 
-    if cv2.countNonZero(thresh) > 8000:
+    if cv2.countNonZero(thresh) > threshold:
         movement = True
     return movement
 

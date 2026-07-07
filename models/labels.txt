@@ -1,0 +1,9 @@
+cans
+cardboard
+glass
+metal
+organic_waste
+paper
+plastic
+plastic_bottles
+trash

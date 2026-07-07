@@ -13,6 +13,7 @@ STATE_ACTION    = "action"
 STATE_COOLDOWN  = "cooldown"
 
 def main():
+    detection_amount = 0
     # camera is open all the time so this probably in the main loop ??
     # Open the default camera
     cam = cv2.VideoCapture(CAMERA_INDEX)
@@ -61,6 +62,7 @@ def main():
                 else:
                     # motion stopped before settle time — false trigger, go back
                     state = STATE_WAITING
+            detection_amount += 1
                 
         elif state == STATE_ACTION:
             # show result for a few seconds, trigger GPIO here later
@@ -71,9 +73,11 @@ def main():
         elif state == STATE_COOLDOWN:
             # wait for item to be removed
             time_in_cooldown = time.time() - state_start_time
-            if not detect_motion(frame, reference_frame) and time_in_cooldown > 1.5:
-                # motion stopped — item removed, reset
-                reference_frame = calibrate(cam)
+            item_removed = not detect_motion(frame, reference_frame, threshold=COOLDOWN_THRESHOLD)
+            timed_out = time_in_cooldown > 8.0
+
+            if (item_removed and time_in_cooldown > 1.5) or timed_out:
+                reference_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # just update reference silently
                 state = STATE_WAITING
                 last_detections = []
             

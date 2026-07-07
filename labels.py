@@ -9,10 +9,8 @@ CLASSES = [
     "paper",
     "plastic",
     "plastic_bottles",
-    "trash",
-    "electronics"
+    "trash"
 ]
-
 # test version, update to correct when getting correct model for this one
 BIN_MAPPING = {
     "cans" : "Cans and bottles",
@@ -23,17 +21,7 @@ BIN_MAPPING = {
     "paper" : "Paper bin",
     "plastic" : "Plastic bin",
     "plastic_bottles" : "Cans and bottles",
-    "trash": "General bin",
-    "electronics" : "Electronics bin"
+    "trash": "General bin"
 }
 DEFAULT_BIN = "General bin"
 
-import os
-
-for split in ["train", "val", "test"]:
-    print(f"\n{split}:")
-    path = f"data/{split}"
-    for cls in sorted(os.listdir(path)):
-        cls_path = os.path.join(path, cls)
-        if os.path.isdir(cls_path):
-            print(f"  {cls}: {len(os.listdir(cls_path))} images")

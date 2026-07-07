@@ -2,6 +2,14 @@ import cv2
 # draws bounding boxes etc
 
 def visualizer(frame, detections, state):
+    cv2.putText(frame, "calibrate by pressing 'r'", (20, 700), cv2.FONT_HERSHEY_SIMPLEX,
+                    0.7,
+                    (127, 0, 255),
+                    2)
+    cv2.putText(frame, "quit by pressing 'q'", (1000, 700), cv2.FONT_HERSHEY_SIMPLEX,
+                    0.7,
+                    (127, 0, 255),
+                    2)
     if state == 'waiting':
         cv2.putText(frame, "Place item in front of camera",
                     (10, 50),
