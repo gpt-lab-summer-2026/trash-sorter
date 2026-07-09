@@ -75,6 +75,7 @@ def main():
             time_in_cooldown = time.time() - state_start_time
             item_removed = not detect_motion(frame, reference_frame, threshold=COOLDOWN_THRESHOLD)
             timed_out = time_in_cooldown > 8.0
+            # move the physical item -> move in the code only when item is moved away (check if the visualizer needs to be changed, there was something about removing the item)
 
             if (item_removed and time_in_cooldown > 1.5) or timed_out:
                 reference_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # just update reference silently

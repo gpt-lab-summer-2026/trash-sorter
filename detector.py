@@ -43,8 +43,6 @@ def preprocess(frame):
     arr = np.clip(arr, -128, 127).astype(np.int8)
     return np.expand_dims(arr, axis=0)
  
- 
-
 def detector(frame):
 
     input_data = preprocess(frame)
