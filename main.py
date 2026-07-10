@@ -6,6 +6,7 @@ from config import *
 from detector import *
 from visualizer import *
 from connect_esp import *
+from sorter import *
 
 STATE_WAITING   = "waiting"
 STATE_DETECTING = "detecting"
@@ -71,7 +72,8 @@ def main():
         elif state == STATE_ACTION:
             # show result for a few seconds, trigger GPIO here later
             # sort according to bin, send signal to esp to move to the correct position
-            
+            sort_trash(last_detections, esp)
+
             if time.time() - state_start_time > 4.0:  # show result for 3 seconds
                 state = STATE_COOLDOWN
                 state_start_time = time.time() 
