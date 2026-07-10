@@ -57,7 +57,12 @@ def toggle_mode(esp):
 # if __name__ == "__main__":
 #     esp = connect_esp()
 #     print(read_response(esp))       # boot + ledcAttach messages
+#     time.sleep(2)
 #     print(set_angle(esp, 30, -30))
-#     time.sleep(1)
+#     time.sleep(2)
+#     print(reset_to_base(esp))
+#     time.sleep(2)
+#     print(set_angle(esp, -50, -50))
+#     time.sleep(2)
 #     print(reset_to_base(esp))
 #     close_esp(esp)
