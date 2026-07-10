@@ -15,7 +15,7 @@ DIM_HEIGHT = 720
 DIM_WIDTH = 1280
 
 # ESP32-C6 serial connection (spherical actuator joint)
-SERIAL_PORT = "COM5"   # check Device Manager for the actual port
+SERIAL_PORT = "COM4"   # check Device Manager for the actual port
 BAUD_RATE = 115200
 SERIAL_TIMEOUT = 1
 
