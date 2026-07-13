@@ -76,6 +76,15 @@ void testFunc() {
       writeUs(servo1_pin, servo1_current_pos);
       writeUs(servo2_pin, servo2_current_pos);
     }
+    else if (cmd == 'S') {                 // absolute position: "S<us1>,<us2>\n"
+      String line = Serial.readStringUntil('\n');
+      int commaIdx = line.indexOf(',');
+      if (commaIdx <= 0) return;
+      servo1_current_pos = clampUs(line.substring(0, commaIdx).toInt());
+      servo2_current_pos = clampUs(line.substring(commaIdx + 1).toInt());
+      writeUs(servo1_pin, servo1_current_pos);
+      writeUs(servo2_pin, servo2_current_pos);
+    }
     else {
       return;  // ignore newlines / unknown keys
     }
