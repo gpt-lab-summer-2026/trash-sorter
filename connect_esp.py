@@ -35,11 +35,11 @@ def set_position(esp, us1, us2):
     return read_response(esp)
 
 
-def set_angle(esp, deg1, deg2):
-    # deg1/deg2 are offsets from the joint's centered base position
-    us1 = SERVO_BASE_US + deg1 * US_PER_DEGREE
-    us2 = SERVO_BASE_US + deg2 * US_PER_DEGREE
-    return set_position(esp, us1, us2)
+# def set_angle(esp, deg1, deg2):
+#     # deg1/deg2 are offsets from the joint's centered base position
+#     us1 = SERVO_BASE_US + deg1 * US_PER_DEGREE
+#     us2 = SERVO_BASE_US + deg2 * US_PER_DEGREE
+#     return set_position(esp, us1, us2)
 
 
 def reset_to_base(esp):

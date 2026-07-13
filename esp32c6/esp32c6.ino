@@ -12,7 +12,7 @@
 #define SERVO_RES  12
 
 // --- Center + travel (same idea as before: base +/- deflect) ---
-#define BASE_US     1500   // center position (us)
+#define BASE_US     1300   // center position (us)
 #define DEFLECT_US  700    // swing each side of base; ~11.1 us/deg -> 889 ~= 80 deg
 
 // --- Absolute safe limits: never command beyond these ---

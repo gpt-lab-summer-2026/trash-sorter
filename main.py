@@ -74,16 +74,15 @@ def main():
             # sort according to bin, send signal to esp to move to the correct position
             sort_trash(last_detections, esp)
 
-            if time.time() - state_start_time > 4.0:  # show result for 3 seconds
+            if time.time() - state_start_time > 1.0:  # show result for 3 seconds
                 state = STATE_COOLDOWN
-                state_start_time = time.time() 
+                #state_start_time = time.time() 
         
         elif state == STATE_COOLDOWN:
             # wait for item to be removed
             time_in_cooldown = time.time() - state_start_time
             item_removed = not detect_motion(frame, reference_frame, threshold=COOLDOWN_THRESHOLD)
-            timed_out = time_in_cooldown > 8.0
-            # move the physical item -> move in the code only when item is moved away (check if the visualizer needs to be changed, there was something about removing the item)
+            timed_out = time_in_cooldown > 6.0
 
             if (item_removed and time_in_cooldown > 1.5) or timed_out:
                 reference_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # just update reference silently
