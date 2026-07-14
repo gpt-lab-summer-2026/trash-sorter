@@ -7,6 +7,7 @@ from detector import *
 from visualizer import *
 from connect_esp import *
 from sorter import *
+from screen import *
 
 STATE_WAITING   = "waiting"
 STATE_DETECTING = "detecting"
@@ -17,6 +18,8 @@ def main():
     # set up esp32 connection
     esp = connect_esp()
     reset_to_base(esp)
+    screen = show_info_screen()
+    update_screen(screen)
 
     detection_amount = 0
     # Open the default camera
@@ -73,6 +76,8 @@ def main():
                 
         elif state == STATE_ACTION:
             # sort according to bin, send signal to esp to move to the correct position
+            screen = show_current_item(last_detections) # show current item on screen
+            update_screen(screen)
             sort_trash(last_detections, esp)
 
             if time.time() - state_start_time > 1.0:  # show result for 3 seconds
@@ -80,9 +85,17 @@ def main():
                 state_start_time = time.time() 
         
         elif state == STATE_COOLDOWN:
-            reference_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # just update reference silently
-            state = STATE_WAITING
-            last_detections = []
+            # wait for item to be removed
+            time_in_cooldown = time.time() - state_start_time
+            item_removed = not detect_motion(frame, reference_frame, threshold=COOLDOWN_THRESHOLD)
+            timed_out = time_in_cooldown > 6.0
+
+            if (item_removed and time_in_cooldown > 1.5) or timed_out:
+                reference_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # just update reference silently
+                state = STATE_WAITING
+                last_detections = []
+                screen = show_info_screen()  # update screen with new sorted item count
+                update_screen(screen)
             
         visualization = visualizer(frame, last_detections, state)
         cv2.imshow("Trash Detector", visualization)
@@ -94,6 +107,8 @@ def main():
             state = STATE_WAITING
             last_detections = []
             state_start_time = None
+            screen = show_info_screen()
+            update_screen(screen)
         # Press 'q' to stop the whole program
         if key == ord('q'):
             break

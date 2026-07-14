@@ -4,7 +4,7 @@ Sorting your trash has never been this easy! Place a piece of trash on the platf
 
 ## Hardware
 
-Trash Sorter is built with a raspberry pi 5, an ESP32-C6, a [spherical actuator joint](https://youtu.be/eXQK8nhIYKk?si=NN3Q2y0jIQY8u60j), and a platform system surrounded by recycling bins. 
+Trash Sorter is built with a raspberry pi 5, an ESP32-C6, a [spherical actuator joint](https://youtu.be/eXQK8nhIYKk?si=NN3Q2y0jIQY8u60j), and a platform system surrounded by recycling bins. Information on sorted items is shown on a QAPASS 1602A LCD screen.
 
 ## Software
 
