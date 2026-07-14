@@ -7,6 +7,7 @@ from detector import *
 from visualizer import *
 from connect_esp import *
 from sorter import *
+from screen import *
 
 STATE_WAITING   = "waiting"
 STATE_DETECTING = "detecting"
@@ -17,6 +18,7 @@ def main():
     # set up esp32 connection
     esp = connect_esp()
     reset_to_base(esp)
+    screen = show_info_screen()
 
     detection_amount = 0
     # camera is open all the time so this probably in the main loop ??
@@ -72,6 +74,7 @@ def main():
         elif state == STATE_ACTION:
             # show result for a few seconds, trigger GPIO here later
             # sort according to bin, send signal to esp to move to the correct position
+            screen = show_current_item(last_detections) # show current item on screen
             sort_trash(last_detections, esp)
 
             if time.time() - state_start_time > 1.0:  # show result for 3 seconds
@@ -88,6 +91,7 @@ def main():
                 reference_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # just update reference silently
                 state = STATE_WAITING
                 last_detections = []
+                screen = show_info_screen()  # update screen with new sorted item count
             
         visualization = visualizer(frame, last_detections, state)
         cv2.imshow("Trash Detector", visualization)
