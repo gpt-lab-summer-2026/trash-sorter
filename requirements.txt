@@ -2,6 +2,7 @@ opencv-python==5.0.0.93
 numpy==2.5.1
 pillow==12.3.0
 pyserial==3.5
-tensorflow==2.21.0
+ultralytics==8.4.75
+onnxruntime==1.23.2
 adafruit-blinka
 adafruit-circuitpython-charlcd

@@ -1,7 +1,7 @@
 
 # settings etc all configs lol, in one place -> easy to change
-MODEL_PATH = "models/trash_classifier_int8.tflite"  #
-LABELS_PATH = "models/labels.txt"
+MODEL_PATH = "models/best.onnx"  #
+#LABELS_PATH = "models/labels.txt"
 
 CONFIDENCE_THRESHOLD = 0.5
 MOTION_THRESHOLD = 9000        # for detecting item placement
