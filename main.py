@@ -58,6 +58,7 @@ def main():
 
         if state == STATE_WAITING:
             if detect_motion(current_frame=frame, reference_frame=reference_frame): # check if motion
+                time.sleep(1)
                 state = STATE_DETECTING
                 state_start_time = time.time()
 
@@ -87,7 +88,7 @@ def main():
             # sort according to bin, send signal to esp to move to the correct position
             screen = show_current_item(last_detections) # show current item on screen
             update_screen(screen)
-            sort_trash(last_detections, esp)
+            sort_trash(last_detections, esp) # do the action of physically sorting
 
             if time.time() - state_start_time > 1.0:  # show result for 3 seconds
                 state = STATE_COOLDOWN
@@ -96,10 +97,8 @@ def main():
         elif state == STATE_COOLDOWN:
             # wait for item to be removed
             time_in_cooldown = time.time() - state_start_time
-            item_removed = not detect_motion(frame, reference_frame, threshold=COOLDOWN_THRESHOLD)
-            timed_out = time_in_cooldown > 6.0
 
-            if (item_removed and time_in_cooldown > 1.5) or timed_out:
+            if (time_in_cooldown > 1.5):
                 reference_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # just update reference silently
                 state = STATE_WAITING
                 last_detections = []
