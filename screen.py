@@ -53,3 +53,5 @@ def update_screen(text):
         _lcd.message = "\n".join(lines)
     else:
         print("[LCD]", " | ".join(lines))
+
+update_screen("hello! great day to recycle <3")
