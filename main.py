@@ -1,6 +1,8 @@
 # imports
 import cv2
 import time
+import sys
+
 from camera import *
 from config import *
 from detector import *
@@ -18,6 +20,11 @@ def main():
     # set up esp32 connection
     esp = connect_esp()
     reset_to_base(esp)
+    # empty the csv file
+    f = open("sorted.csv", "w")
+    f.truncate()
+    f.close()
+
     screen = show_info_screen()
     update_screen(screen)
 
@@ -36,6 +43,8 @@ def main():
         cv2.imshow("Trash Detector", frame)
         if cv2.waitKey(1) == ord('r'):
             reference_frame = calibrate(cam)
+        elif cv2.waitKey(1) == ord('q'):
+            sys.exit()
 
     state = STATE_WAITING
     state_start_time = None
