@@ -1,27 +1,10 @@
-# class list
-# remove some classes, maybe 3-4 would be good amount 
-CLASSES = [
-    "cans",
-    "cardboard",
-    "glass",
-    "metal",
-    "organic_waste",
-    "paper",
-    "plastic",
-    "plastic_bottles",
-    "trash"
-]
-# test version, update to correct when getting correct model for this one
+# keys must match the YOLO model's own class names (model.names), which come
+# from the training folder names in data/new_data -- check with model.names
 BIN_MAPPING = {
-    "cans" : "Cans and bottles",
-    "cardboard" : "Cardboard bin",
-    "glass" : "Glass bin",
-    "metal" : "Metal bin",
-    "organic_waste" : "Bio bin",
-    "paper" : "Paper bin",
-    "plastic" : "Plastic bin",
-    "plastic_bottles" : "Cans and bottles",
-    "trash": "General bin"
+    "cardboard_and_paper": "cardboard and paper bin",
+    "electronics" : "electronics bin",
+    "general_trash" : "general bin",
+    "plastic" : "plastic bin"
 }
-DEFAULT_BIN = "General bin"
+DEFAULT_BIN = "general bin"
 
