@@ -3,4 +3,5 @@ numpy==2.5.1
 pillow==12.3.0
 pyserial==3.5
 tensorflow==2.21.0
-RPLCD==1.4.0
+adafruit-blinka
+adafruit-circuitpython-charlcd

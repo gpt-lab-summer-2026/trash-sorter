@@ -1,12 +1,26 @@
 # code for the info screen
 import csv
-from config import LCD_I2C_ADDRESS, LCD_EXPANDER, LCD_COLS, LCD_ROWS
+from config import (
+    LCD_RS_PIN, LCD_EN_PIN, LCD_D4_PIN, LCD_D5_PIN, LCD_D6_PIN, LCD_D7_PIN,
+    LCD_COLS, LCD_ROWS,
+)
 
-# the LCD is only reachable when wired to a Pi's I2C bus -- fall back to
+# the LCD is only reachable when wired to a Pi's GPIO pins -- fall back to
 # printing so this still runs on a dev machine without the hardware attached
 try:
-    from RPLCD.i2c import CharLCD
-    _lcd = CharLCD(LCD_EXPANDER, LCD_I2C_ADDRESS, cols=LCD_COLS, rows=LCD_ROWS)
+    import board
+    import digitalio
+    import adafruit_character_lcd.character_lcd as characterlcd
+
+    _lcd = characterlcd.Character_LCD_Mono(
+        digitalio.DigitalInOut(getattr(board, LCD_RS_PIN)),
+        digitalio.DigitalInOut(getattr(board, LCD_EN_PIN)),
+        digitalio.DigitalInOut(getattr(board, LCD_D4_PIN)),
+        digitalio.DigitalInOut(getattr(board, LCD_D5_PIN)),
+        digitalio.DigitalInOut(getattr(board, LCD_D6_PIN)),
+        digitalio.DigitalInOut(getattr(board, LCD_D7_PIN)),
+        LCD_COLS, LCD_ROWS,
+    )
 except Exception:
     _lcd = None
 
@@ -33,12 +47,9 @@ def show_current_item(last_detections):
     return text
 
 def update_screen(text):
-    # push text to the physical 16x2 LCD, one line at a time
-    lines = text.split("\n")[:LCD_ROWS]
+    # push text to the physical 16x2 LCD
+    lines = [line[:LCD_COLS] for line in text.split("\n")[:LCD_ROWS]]
     if _lcd is not None:
-        _lcd.clear()
-        for row, line in enumerate(lines):
-            _lcd.cursor_pos = (row, 0)
-            _lcd.write_string(line[:LCD_COLS])
+        _lcd.message = "\n".join(lines)
     else:
         print("[LCD]", " | ".join(lines))
