@@ -1,4 +1,5 @@
 # handle the physical sorting of the trash; motors and signals to them etc whatever is needed
+import csv
 import time
 from connect_esp import *
 from config import *
@@ -30,8 +31,8 @@ def sort_trash(last_detections, esp):
 
 def save_sorted_item(label, confidence, bin):
     # save the sorted item to a file for record-keeping
-    with open("sorted.json", "a") as f:
-        f.write(f"{label},{confidence},{bin}\n")
+    with open("sorted.csv", "a", newline="") as f:
+        csv.writer(f).writerow([label, confidence, bin])
 
 
 # testing the sorting function

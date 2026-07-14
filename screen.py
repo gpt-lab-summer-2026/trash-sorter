@@ -1,11 +1,11 @@
 # code for the info screen
+import csv
 
 def fetch_data():
-    # fetch the data from the sorted.json file
+    # fetch the data from the sorted.csv file
     try:
-        with open("sorted.json", "r") as f:
-            lines = f.readlines()
-            return lines
+        with open("sorted.csv", "r", newline="") as f:
+            return list(csv.reader(f))
     except FileNotFoundError:
         return []
 
