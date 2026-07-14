@@ -25,3 +25,9 @@ SERVO_DEFLECT_US = 700
 SERVO_ABS_MIN_US = 400
 SERVO_ABS_MAX_US = 2600
 #US_PER_DEGREE = 11.11  # ~ (2500 - 500) / 180
+
+# QAPASS 1602A LCD, wired over I2C directly to the Pi (PCF8574 backpack)
+LCD_I2C_ADDRESS = 0x27   # check with `i2cdetect -y 1`, some backpacks are 0x3F
+LCD_EXPANDER = "PCF8574"
+LCD_COLS = 16
+LCD_ROWS = 2
