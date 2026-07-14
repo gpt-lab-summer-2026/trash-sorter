@@ -62,8 +62,8 @@ def detector(frame):
     sorted_probs = sorted(probs, reverse=True)
     margin = sorted_probs[0] - sorted_probs[1]
 
-    if margin < 0.25:
-        return []  # model is uncertain, reject
+    #if margin < 0.25:
+     #   return []  # model is uncertain, reject
     
     label = CLASSES[top1_idx]
     bin_name = BIN_MAPPING.get(label, DEFAULT_BIN)

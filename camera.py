@@ -35,6 +35,14 @@ def get_frame(camera_object):
     ret, frame = camera_object.read()
     if not ret:
         return None
-    frame = cv2.resize(frame, (DIM_WIDTH, DIM_HEIGHT))
-    return frame
+    h, w = frame.shape[:2]
+    side = min(h, w)  # size of the square
+
+    # Coordinates for a centered square crop
+    x_start = (w - side) // 2
+    y_start = (h - side) // 2
+
+    cropped = frame[y_start:y_start + side, x_start:x_start + side]
+
+    return cropped
             
