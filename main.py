@@ -22,7 +22,6 @@ def main():
     update_screen(screen)
 
     detection_amount = 0
-    # camera is open all the time so this probably in the main loop ??
     # Open the default camera
     cam = cv2.VideoCapture(CAMERA_INDEX)
 
@@ -56,8 +55,11 @@ def main():
         elif state == STATE_DETECTING:
             # wait for item to settle before classifying
             if time.time() - state_start_time > 2.0:
-                if detect_motion(frame, reference_frame):  # item still in frame
+                print(time)
+                if detect_motion(frame, reference_frame):  # compares current frame to reference and detedts if item still in frame (true if item still in frame)
                     last_detections = detector(frame)
+                    print(f"last detections: {last_detections}")
+                    # TO-DO: if item not detected it should try it again couple times
                     if not last_detections:
                         # model was uncertain — default to general bin
                         last_detections = [{
@@ -73,7 +75,6 @@ def main():
             detection_amount += 1
                 
         elif state == STATE_ACTION:
-            # show result for a few seconds, trigger GPIO here later
             # sort according to bin, send signal to esp to move to the correct position
             screen = show_current_item(last_detections) # show current item on screen
             update_screen(screen)
@@ -81,7 +82,7 @@ def main():
 
             if time.time() - state_start_time > 1.0:  # show result for 3 seconds
                 state = STATE_COOLDOWN
-                #state_start_time = time.time() 
+                state_start_time = time.time() 
         
         elif state == STATE_COOLDOWN:
             # wait for item to be removed
