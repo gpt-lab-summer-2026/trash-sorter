@@ -24,7 +24,6 @@ SERVO_BASE_US = 1300
 SERVO_DEFLECT_US = 700
 SERVO_ABS_MIN_US = 400
 SERVO_ABS_MAX_US = 2600
-#US_PER_DEGREE = 11.11  # ~ (2500 - 500) / 180
 
 # QAPASS 1602A LCD, wired directly to the Pi's GPIO pins (parallel interface,
 # compatible with all Pi versions as of Jan. 2019, v1 - v3B+)
