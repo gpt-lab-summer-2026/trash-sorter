@@ -106,6 +106,8 @@ def main():
             state = STATE_WAITING
             last_detections = []
             state_start_time = None
+            screen = show_info_screen()
+            update_screen(screen)
         # Press 'q' to stop the whole program
         if key == ord('q'):
             break

@@ -19,8 +19,8 @@ def fetch_data():
         return []
 
 def show_info_screen():
-    detection_amount = len(fetch_data())
-    text = f"Sorted items: {detection_amount}"
+    number = len(fetch_data())
+    text = f"Sorted items: {number}"
     return text
 
 def show_current_item(last_detections):
