@@ -10,6 +10,7 @@ from visualizer import *
 from connect_esp import *
 from sorter import *
 from screen import *
+from buttons import *
 
 STATE_WAITING   = "waiting"
 STATE_DETECTING = "detecting"
@@ -38,12 +39,13 @@ def main():
         frame = get_frame(cam)
         if frame is None:
             continue
-        msg = "Press 'r' to calibrate"
+        msg = "Press the calibrate button"
         cv2.putText(frame, msg, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
         cv2.imshow("Trash Detector", frame)
-        if cv2.waitKey(1) == ord('r'):
+        cv2.waitKey(1)
+        if calibrate_pressed():
             reference_frame = calibrate(cam)
-        elif cv2.waitKey(1) == ord('q'):
+        elif quit_pressed():
             sys.exit()
 
     state = STATE_WAITING
@@ -114,8 +116,8 @@ def main():
         visualization = visualizer(frame, last_detections, state)
         cv2.imshow("Trash Detector", visualization)
 
-        key = cv2.waitKey(1)
-        if key == ord('r'):
+        cv2.waitKey(1)
+        if calibrate_pressed():
             time.sleep(5)
             reference_frame = calibrate(cam)
             state = STATE_WAITING
@@ -123,8 +125,8 @@ def main():
             state_start_time = None
             screen = show_info_screen()
             update_screen(screen)
-        # Press 'q' to stop the whole program
-        if key == ord('q'):
+        # press the quit button to stop the whole program
+        if quit_pressed():
             clear_screen()
             break
 
