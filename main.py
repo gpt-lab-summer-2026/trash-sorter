@@ -57,12 +57,16 @@ def main():
             continue
 
         if state == STATE_WAITING:
+            print("STATE: WAITING") #debug
+            update_screen(f"\nPlace item      ")
             if detect_motion(current_frame=frame, reference_frame=reference_frame): # check if motion
                 time.sleep(1)
                 state = STATE_DETECTING
                 state_start_time = time.time()
 
         elif state == STATE_DETECTING:
+            print("STATE: DETECTING") #debug
+            update_screen(f"\nDetecting         ")
             # wait for item to settle before classifying
             if time.time() - state_start_time > 2.0:
                 print(time)
@@ -85,6 +89,7 @@ def main():
             detection_amount += 1
                 
         elif state == STATE_ACTION:
+            print("STATE: ACTION") #debug
             # sort according to bin, send signal to esp to move to the correct position
             screen = show_current_item(last_detections) # show current item on screen
             update_screen(screen)
@@ -95,6 +100,7 @@ def main():
                 state_start_time = time.time() 
         
         elif state == STATE_COOLDOWN:
+            print("STATE: COOLDOWN") #debug
             # wait for item to be removed
             time_in_cooldown = time.time() - state_start_time
 
