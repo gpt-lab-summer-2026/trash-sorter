@@ -53,3 +53,6 @@ def update_screen(text):
         _lcd.message = "\n".join(lines)
     else:
         print("[LCD]", " | ".join(lines))
+
+def clear_screen():
+    _lcd.clear()
