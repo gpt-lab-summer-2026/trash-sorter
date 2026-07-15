@@ -1,10 +1,9 @@
 
 # settings etc all configs lol, in one place -> easy to change
-MODEL_PATH = "models/best.onnx"  #
-#LABELS_PATH = "models/labels.txt"
+MODEL_PATH = "models/best.onnx"  
 
 CONFIDENCE_THRESHOLD = 0.5
-MOTION_THRESHOLD = 9000        # for detecting item placement
+MOTION_THRESHOLD = 6000        # for detecting item placement
 COOLDOWN_THRESHOLD = 25000 
 
 CAMERA_INDEX = 0  # 0 = iPhone (Continuity Camera), 1 = macbook camera
@@ -15,7 +14,7 @@ DIM_HEIGHT = 600
 DIM_WIDTH = 600
 
 # ESP32-C6 serial connection (spherical actuator joint)
-SERIAL_PORT = "/dev/cu.usbmodem1401"   # check Device Manager for the actual port
+SERIAL_PORT = "/dev/ttyACM0"   # check Device Manager for the actual port
 BAUD_RATE = 115200
 SERIAL_TIMEOUT = 1
 
