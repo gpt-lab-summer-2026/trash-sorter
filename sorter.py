@@ -20,9 +20,9 @@ def sort_trash(last_detections, esp):
     elif bin == "cardboard and paper bin":
         us1, us2 = 1300, 600  # example positions for cardboard and paper bin
     elif bin == "plastic bin":
-        us1, us2 = 600, 1300     # example positions for plastic bin
+        us1, us2 = 1300, 2000     # example positions for plastic bin, THIS GETS STUCK SOMETIMES
     else:
-        us1, us2 = 1300, 2000     # default position for general bin
+        us1, us2 = 600, 1300     # default position for general bin
 
     # Set the servo angles
     set_position(esp, us1, us2)
