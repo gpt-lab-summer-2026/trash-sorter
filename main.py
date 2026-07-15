@@ -125,6 +125,7 @@ def main():
             update_screen(screen)
         # Press 'q' to stop the whole program
         if key == ord('q'):
+            clear_screen()
             break
 
     # Release the capture and writer objects
