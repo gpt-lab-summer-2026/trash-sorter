@@ -36,5 +36,5 @@ LCD_COLS = 16
 LCD_ROWS = 2
 
 # Pins for r and q buttons
-BUTTON_R_PIN = "D20"
-BUTTON_Q_PIN = "D21"
+BUTTON_R_PIN = "D5"
+BUTTON_Q_PIN = "D6"
