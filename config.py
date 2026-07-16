@@ -7,7 +7,11 @@ MOTION_THRESHOLD = 6000        # for detecting item placement
 COOLDOWN_THRESHOLD = 25000 
 
 CAMERA_INDEX = 0  # 0 = iPhone (Continuity Camera), 1 = macbook camera
-FRAME_TIME = 3 
+FRAME_TIME = 3
+
+# opens a debug window with cv2.imshow -- needs a monitor + X server, so this
+# must be False when running headless (e.g. Pi without a monitor attached)
+SHOW_DISPLAY = False
 
 # images resized to 384 x 512
 DIM_HEIGHT = 600
