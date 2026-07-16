@@ -34,3 +34,7 @@ LCD_D6_PIN = "D23"
 LCD_D7_PIN = "D18"
 LCD_COLS = 16
 LCD_ROWS = 2
+
+# Pins for r and q buttons
+BUTTON_R_PIN = "D5"
+BUTTON_Q_PIN = "D6"
