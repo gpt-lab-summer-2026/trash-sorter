@@ -36,11 +36,12 @@ def main():
         frame = get_frame(cam)
         if frame is None:
             continue
-        msg = "Press the calibrate button"
-        cv2.putText(frame, msg, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
         update_screen("Press the        \ncalibrate button")
-        cv2.imshow("Trash Detector", frame)
-        cv2.waitKey(1)
+        if SHOW_DISPLAY:
+            msg = "Press the calibrate button"
+            cv2.putText(frame, msg, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+            cv2.imshow("Trash Detector", frame)
+            cv2.waitKey(1)
         if calibrate_pressed():
             reference_frame = calibrate(cam)
         elif quit_pressed():
@@ -114,10 +115,11 @@ def main():
                 screen = show_info_screen()  # update screen with new sorted item count
                 update_screen(screen)
             
-        visualization = visualizer(frame, last_detections, state)
-        cv2.imshow("Trash Detector", visualization)
+        if SHOW_DISPLAY:
+            visualization = visualizer(frame, last_detections, state)
+            cv2.imshow("Trash Detector", visualization)
+            cv2.waitKey(1)
 
-        cv2.waitKey(1)
         if calibrate_pressed():
             time.sleep(5)
             reference_frame = calibrate(cam)
@@ -133,7 +135,8 @@ def main():
 
     # Release the capture and writer objects
     cam.release()
-    cv2.destroyAllWindows()
+    if SHOW_DISPLAY:
+        cv2.destroyAllWindows()
 
 # run program
 if __name__=="__main__":
