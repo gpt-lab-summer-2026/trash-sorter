@@ -25,9 +25,6 @@ def main():
     f.truncate()
     f.close()
 
-    screen = show_info_screen()
-    update_screen(screen)
-
     detection_amount = 0
     # Open the default camera
     cam = cv2.VideoCapture(CAMERA_INDEX)
@@ -40,12 +37,16 @@ def main():
             continue
         msg = "Press 'r' to calibrate"
         cv2.putText(frame, msg, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+        update_screen("Press the        \ncalibrate button")
         cv2.imshow("Trash Detector", frame)
         if cv2.waitKey(1) == ord('r'):
             reference_frame = calibrate(cam)
         elif cv2.waitKey(1) == ord('q'):
             sys.exit()
 
+    screen = show_info_screen()
+    update_screen(screen)
+    
     state = STATE_WAITING
     state_start_time = None
     last_detections = []
