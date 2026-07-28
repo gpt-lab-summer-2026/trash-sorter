@@ -6,7 +6,7 @@ Sorting your trash has never been this easy! Place a piece of trash on the platf
 
 ## Hardware
 
-Trash Sorter is built with a raspberry pi 5, an ESP32-C6, a [spherical actuator joint](https://youtu.be/eXQK8nhIYKk?si=NN3Q2y0jIQY8u60j) (that has two servo motors inside), a camera, and a platform system surrounded by recycling bins. Information on sorted items is shown on a QAPASS 1602A LCD screen. One button is used for calibrating the camera and and other button is used for stopping the program.
+Trash Sorter is built with a raspberry pi 5, an ESP32-C6, a [spherical actuator joint](https://youtu.be/eXQK8nhIYKk?si=NN3Q2y0jIQY8u60j) (that has two servo motors inside), a raspberry pi camera, and a platform system surrounded by recycling bins. Information on sorted items is shown on a QAPASS 1602A LCD screen. One button is used for calibrating the camera and and other button is used for stopping the program.
 
 ## Software
 
@@ -27,9 +27,11 @@ When installed, run:
 
   ```pip install -r requirements.txt``` 
 
-to install correct depencies. Make sure model weights file best.onnx is path is correct in config.py and run program via
+to install correct depencies. Make sure model weights file best.onnx is path is correct in config.pp. If you are not running in headles mode, prograam can be run via
 
-  ```python main.py.```
+  ```python main.py```
+
+If you are using headless mode, you can set up script for to run the program automatically.
 
 ## Possible improvements / additions
 
